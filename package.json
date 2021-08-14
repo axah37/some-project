@@ -5,17 +5,25 @@
 	"main": "app.js",
 	"scripts": {
 		"test": "NODE_ENV=test mocha -r ts-node/register -r tsconfig-paths/register test/**/*.spec.ts",
-		"start": "NODE_ENV=dev ts-node -r tsconfig-paths/register src/app.ts "
+		"start": "NODE_ENV=dev ts-node-dev -r tsconfig-paths/register src/app.ts"
 	},
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
 		"@types/chai": "^4.2.21",
+		"@types/chai-as-promised": "^7.1.4",
+		"@types/dotenv": "^8.2.0",
 		"@types/mocha": "^9.0.0",
 		"chai": "^4.3.4",
 		"mocha": "^9.0.3",
+		"nodemon": "^2.0.12",
 		"ts-node": "^10.2.0",
+		"ts-node-dev": "^1.1.8",
 		"tsconfig-paths": "^3.10.1",
 		"typescript": "^4.3.5"
+	},
+	"dependencies": {
+		"dotenv": "^10.0.0",
+		"fastify": "^3.20.2"
 	}
 }
