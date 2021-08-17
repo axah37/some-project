@@ -1,18 +1,26 @@
-import { expect } from "chai";
-import { app, start } from "server/server";
+import { expect } from 'chai';
+import { after, before } from 'mocha';
+import { routes } from 'routes/route';
+import { app, start, stop } from 'server/server';
+import request from 'supertest';
 
-describe("server startup", () => {
 
-	beforeEach(() => {
-
+describe("api test", () => {
+	before(() => {
+		start();
+		app.register(routes);
 	});
 
+	after(() => {
+		stop();
+	});
 	it("server successfully startup", () => {
-		expect(start());
-		expect(app).to.be.eq([]);
+		expect(app).to.exist;
 	});
 
-	it("server should be listening on port 9000", () => {
-
+	it("ping route check", async () => {
+		const res = await request(app.server).get('/ping');
+		expect(res.status).eq(200);
+		expect(res.body.hello).eq('world')
 	});
 });

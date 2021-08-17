@@ -17,4 +17,13 @@ const start = async () => {
 	}
 }
 
-export { app, start }
+const stop = async () => {
+	try {
+		await app.close();
+	} catch (err) {
+		app.log.error(err);
+		process.exit(1);
+	}
+}
+
+export { app, start, stop }
